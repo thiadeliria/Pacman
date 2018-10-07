@@ -6,19 +6,20 @@
 **Concepts:** informed state-space search, probabilistic inference, reinforcement learning.
 
 ## How to Play
-To start an interactive game, type at the command line:
+Use WASD or arrow keys to control Pac-Man. To start an interactive game, type at the command line:
 
 `python pacman.py`
 
-Use WASD or arrow keys to control Pac-Man.
+<img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_default.gif" width="540" />
+
 
 Variables can be defined as follows:
 
-`python pacman.py -l MAZE_TYPE -a fn=SEARCH_ALGO` where `MAZE_TYPE` defines the map layout, and `SEARCH_ALGO` defines the algorithm that Pac-Man follows while he navigates the maze.
+`python pacman.py -l MAZE_TYPE -p SearchAgent -a fn=SEARCH_ALGO` where `MAZE_TYPE` defines the map layout, and `SearchAgent` navigates Pac-Man through the maze according to the algorithm supplied in the `SEARCH_ALGO` parameter.
 
 
 ## Search Algorithms
-Search algorithms guide Pac-Man on his dot-gobbling, ghost-avoiding adventure. Specifically, they determine the path that Pac-Man will take.
+Search algorithms guide Pac-Man on his dot-gobbling, ghost-avoiding adventure. Specifically, they determine the path that Pac-Man follows.
 
 #### Depth-First Search (DFS)
 
