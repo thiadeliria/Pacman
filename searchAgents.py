@@ -19,19 +19,6 @@ passed to your agent using '-a'.  For example, to load a SearchAgent that uses
 depth first search (dfs), run the following command:
 
 > python pacman.py -p SearchAgent -a fn=depthFirstSearch
-
-Commands to invoke other search strategies can be found in the project
-description.
-
-Please only change the parts of the file you are asked to.  Look for the lines
-that say
-
-"*** YOUR CODE HERE ***"
-
-The parts you fill in start about 3/4 of the way down.  Follow the project
-description for details.
-
-Good luck and happy searching!
 """
 
 from game import Directions
@@ -51,11 +38,6 @@ class GoWestAgent(Agent):
         else:
             return Directions.STOP
 
-#######################################################
-# This portion is written for you, but will only work #
-#       after you fill in parts of search.py          #
-#######################################################
-
 class SearchAgent(Agent):
     """
     This very general search agent finds a path using a supplied search
@@ -69,12 +51,9 @@ class SearchAgent(Agent):
       depthFirstSearch or dfs
       breadthFirstSearch or bfs
 
-
-    Note: You should NOT change any code in SearchAgent
     """
 
     def __init__(self, fn='depthFirstSearch', prob='PositionSearchProblem', heuristic='nullHeuristic'):
-        # Warning: some advanced Python magic is employed below to find the right functions and problems
 
         # Get the search function from the name and heuristic
         if fn not in dir(search):
@@ -140,8 +119,6 @@ class PositionSearchProblem(search.SearchProblem):
     to a particular point on the pacman board.
 
     The state space consists of (x,y) positions in a pacman game.
-
-    Note: this search problem is fully specified; you should NOT change it.
     """
 
     def __init__(self, gameState, costFn = lambda x: 1, goal=(1,1), start=None, warn=True, visualize=True):
@@ -262,15 +239,9 @@ def euclideanHeuristic(position, problem, info={}):
     xy2 = problem.goal
     return ( (xy1[0] - xy2[0]) ** 2 + (xy1[1] - xy2[1]) ** 2 ) ** 0.5
 
-#####################################################
-# This portion is incomplete.  Time to write code!  #
-#####################################################
-
 class CornersProblem(search.SearchProblem):
     """
     This search problem finds paths through all four corners of a layout.
-
-    You must select a suitable state space and successor function
     """
 
     def __init__(self, startingGameState):
@@ -285,33 +256,29 @@ class CornersProblem(search.SearchProblem):
             if not startingGameState.hasFood(*corner):
                 print 'Warning: no food in corner ' + str(corner)
         self._expanded = 0 # DO NOT CHANGE; Number of search nodes expanded
-        # Please add any code here which you would like to use
-        # in initializing the problem
-        "*** YOUR CODE HERE ***"
         
         self.startingGameState = startingGameState
-        cornersVisisted = [False, False, False, False]
+        cornersVisited = [False, False, False, False]
         
         if self.startingPosition == self.corners[0]:
-            cornersVisisted[0] = True
+            cornersVisited[0] = True
         
         if self.startingPosition == self.corners[1]:
-            cornersVisisted[1] = True
+            cornersVisited[1] = True
         
         if self.startingPosition == self.corners[2]:
-            cornersVisisted[2] = True
+            cornersVisited[2] = True
         
         if self.startingPosition == self.corners[3]:
-            cornersVisisted[3] = True
+            cornersVisited[3] = True
         
-        self.startingState = (self.startingPosition, tuple(cornersVisisted))
+        self.startingState = (self.startingPosition, tuple(cornersVisited))
 
     def getStartState(self):
         """
         Returns the start state (in your state space, not the full Pacman state
         space)
         """
-        "*** YOUR CODE HERE ***"
     
         return self.startingState
 
@@ -319,11 +286,10 @@ class CornersProblem(search.SearchProblem):
         """
         Returns whether this search state is a goal state of the problem.
         """
-        "*** YOUR CODE HERE ***"
         
-        cornersVisisted = state[1]
+        cornersVisited = state[1]
         
-        if cornersVisisted[0] and cornersVisisted[1] and cornersVisisted[2] and cornersVisisted[3]:
+        if cornersVisited[0] and cornersVisited[1] and cornersVisited[2] and cornersVisited[3]:
             return True
         else:
             return False
@@ -340,15 +306,10 @@ class CornersProblem(search.SearchProblem):
         """
 
         successors = []
+        # Add a successor state to the successor list if the action is legal
         for action in [Directions.NORTH, Directions.SOUTH, Directions.EAST, Directions.WEST]:
-            # Add a successor state to the successor list if the action is legal
-            # Here's a code snippet for figuring out whether a new position hits a wall:
-            #   x,y = currentPosition
-            #   dx, dy = Actions.directionToVector(action)
-            #   nextx, nexty = int(x + dx), int(y + dy)
-            #   hitsWall = self.walls[nextx][nexty]
 
-            "*** YOUR CODE HERE ***"
+            # Figure out whether a new position hits a wall
             x,y = state[0]
             dx, dy = Actions.directionToVector(action)
             nextx, nexty = int(x + dx), int(y + dy)
@@ -358,23 +319,23 @@ class CornersProblem(search.SearchProblem):
                 
                 nextState = (nextx, nexty)
                 
-                #have to create a new list to create a deep copy
-                #or else it won't return correct number of moves
-                cornersVisisted = list(state[1])
+                # Have to create a new list to create a deep copy
+                # else it won't return correct number of moves
+                cornersVisited = list(state[1])
                 if nextState == self.corners[0]:
-                    cornersVisisted[0] = True
+                    cornersVisited[0] = True
                 
                 if nextState == self.corners[1]:
-                    cornersVisisted[1] = True
+                    cornersVisited[1] = True
                 
                 if nextState == self.corners[2]:
-                    cornersVisisted[2] = True
+                    cornersVisited[2] = True
                 
                 if nextState == self.corners[3]:
-                    cornersVisisted[3] = True
+                    cornersVisited[3] = True
                 
                 cost = 1
-                successors.append( ( (nextState, tuple(cornersVisisted)), action, cost, ) )
+                successors.append( ( (nextState, tuple(cornersVisited)), action, cost, ) )
 
         self._expanded += 1 # DO NOT CHANGE
         return successors
@@ -432,12 +393,8 @@ def findFarthestPoint(location, goalArray):
 
 def cornersHeuristic(state, problem):
     """
-    A heuristic for the CornersProblem that you defined.
-
-      state:   The current search state
-               (a data structure you chose in your search problem)
-
-      problem: The CornersProblem instance for this layout.
+    Encourage Pacman to find the shortest path that touches all four corners
+    of the maze.
 
     This function should always return a number that is a lower bound on the
     shortest path from the state to a goal of the problem; i.e., it should be
@@ -445,8 +402,6 @@ def cornersHeuristic(state, problem):
     """
     corners = problem.corners # These are the corner coordinates
     walls = problem.walls # These are the walls of the maze, as a Grid (game.py)
-
-    "*** YOUR CODE HERE ***"
     
     heuristic = 0
     currentLocation = state[0]
@@ -545,33 +500,8 @@ class AStarFoodSearchAgent(SearchAgent):
         self.searchType = FoodSearchProblem
 
 def foodHeuristic(state, problem):
-    """Your heuristic for the FoodSearchProblem goes here.
-
-    This heuristic must be admissible to ensure correctness.
-
-    If using A* ever finds a solution that is worse uniform cost
-    search finds, your heuristic is *not* admissible!  On the other
-    hand, inadmissible heuristics may occasionally find optimal
-    solutions, so be careful.
-
-    The state is a tuple ( pacmanPosition, foodGrid ) where foodGrid is a Grid
-    (see game.py) of either True or False. You can call foodGrid.asList() to get
-    a list of food coordinates instead.
-
-    If you want access to info like walls, capsules, etc., you can query the
-    problem.  For example, problem.walls gives you a Grid of where the walls
-    are.
-
-    If you want to *store* information to be reused in other calls to the
-    heuristic, there is a dictionary called problem.heuristicInfo that you can
-    use. For example, if you only want to count the walls once and store that
-    value, try: problem.heuristicInfo['wallCount'] = problem.walls.count()
-    Subsequent calls to this heuristic can access
-    problem.heuristicInfo['wallCount']
-
-    """
+    """Encourage Pacman to eat all the pellets as fast as possible."""
     position, foodGrid = state
-    "*** YOUR CODE HERE ***"
     
     heuristic = 0
     foodList = foodGrid.asList()
@@ -620,13 +550,10 @@ class ClosestDotSearchAgent(SearchAgent):
         Returns a path (a list of actions) to the closest dot, starting from
         gameState.
         """
-        # Here are some useful elements of the startState
         startPosition = gameState.getPacmanPosition()
         food = gameState.getFood()
         walls = gameState.getWalls()
         problem = AnyFoodSearchProblem(gameState)
-
-        "*** YOUR CODE HERE ***"
         
         # return search.depthFirstSearch(problem)
         return search.breadthFirstSearch(problem)
@@ -658,15 +585,7 @@ class AnyFoodSearchProblem(PositionSearchProblem):
         self._visited, self._visitedlist, self._expanded = {}, [], 0 # DO NOT CHANGE
 
     def isGoalState(self, state):
-        """
-        The state is Pacman's position. Fill this in with a goal test that will
-        complete the problem definition.
-        """
         x,y = state
-
-        "*** YOUR CODE HERE ***"
-        # print "self.food[x] is: " + str(self.food[x])
-        # print "self.food[x][y] is: " + str(self.food[x][y])
         
         return self.food[x][y]
 
