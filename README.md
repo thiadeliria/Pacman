@@ -21,7 +21,7 @@ Variables can be defined as follows:
 ## Search Algorithms
 Search algorithms guide Pac-Man on his dot-gobbling, ghost-avoiding adventure. We compare how Pac-Man fares with each algorithm on a tinyMaze `MAZE_TYPE` with a fixed food dot.
 
-The algorithm determines the path that Pac-Man takes to get to the goal cell (in this case, the cell containing food) from the start cell (his position in the upper right corner). Specifically, it views the maze as a graph in which each cell on the maze grid constitutes a node. The algorithm makes a queue of un-explored cells for Pac-Man to visit in order. The cells that Pac-Man explores first are coloured a deeper red.
+The algorithm determines the path that Pac-Man takes to get to the goal cell (in this case, the cell containing food) from the start cell (his position in the upper right corner). Specifically, it views the maze as a graph in which each cell on the maze grid constitutes a node. The algorithm makes a queue of un-explored cells for Pac-Man to visit in order. The cells that Pac-Man explores first are coloured a brighter red.
 
 ### Depth-First Search (DFS)
 We do `python pacman.py -l tinyMaze -p SearchAgent -a fn=dfs` and get:
@@ -29,6 +29,7 @@ We do `python pacman.py -l tinyMaze -p SearchAgent -a fn=dfs` and get:
 <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_dfs.gif" width="200" /> <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_dfs_text.png" />
 
 **Cost:** 10
+
 Pac-Man finds the food in 10 steps.
 
 **Algorithm:** DFS prioritises depth over breadth, i.e., it builds Pac-Man's path by exploring a nearby cell, then the cell next to that, then the cell next to that, and so on, down a path as deep as it goes until DFS reaches the goal cell. We can see by the red overlay in the animation that DFS traverses the left side of the maze first, then turns east at the first cross-roads. There is no food down this path, so DFS tries again and follows the path down south at the first cross-roads. Since this path leads to food, DFS doesn't bother looking down a different path, and this is the path that Pac-Man takes.
@@ -39,10 +40,21 @@ We do `python pacman.py -l tinyMaze -p SearchAgent -a fn=bfs` and get:
 <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_bfs.gif" width="200" /> <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_bfs_text.png" />
 
 **Cost:** 8
-We see that Pac-Man doing BFS takes a different path than above. It's also a more efficient path; this one takes only 8 steps to find the same food dot.
 
-**Algorithm:** Since BFS gives precedence to breadth over depth, the algorithm builds a different path than DFS for Pac-Man: BFS explores all the neighbouring cells 1 step away, and if none are the goal cell, BFS tries the cells 2 steps away, and if it finds no goal cell, BFS tries looking 3 steps away, and so on. In this maze, BFS explores the path down the left side and the path down the right side concurrently, and the right path yields food earlier (in 8 steps rather than 10), so the right path is the one that Pac-Man takes.
+We see that Pac-Man doing BFS takes a different path than above. This is a more efficient path that takes only 8 steps to find the same food dot.
+
+**Algorithm:** Since BFS gives precedence to breadth over depth, the algorithm builds a different path than DFS for Pac-Man: BFS explores all the neighbouring cells 1 step away, and if none are the goal cell, BFS tries the cells 2 steps away, and if it finds no goal cell, BFS tries looking 3 steps away, and so on. In this maze, BFS explores the path down the left side and the path down the right side concurrently, and the right path yields food earlier (in 8 steps rather than 10), so the right path is the one that Pac-Man takes. BFS yields the shortest path to the goal.
 
 ### Uniform-Cost Search (UCS)
 
+**Cost:** 
+
+**Algorithm:**
+
 ### A* Search
+
+**Cost:** 
+
+**Algorithm:**
+
+
