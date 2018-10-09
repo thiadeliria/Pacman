@@ -24,20 +24,22 @@ Given the inputs:
 
 the search algorithm returns a sequence of states that leads Pac-Man from initial to goal state. The strategy is to iteratively generate a list of successor states (called the *frontier*) until a path to the goal state is found.
 
-### Depth-First Search vs. Breadth-First Search
-<img align="right" src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_tinymaze.png" width="200" />
-
+### Depth-First Search vs. Breadth-First Search (small search space)
 We can compare some algorithms by observing how Pac-Man fares on a tinyMaze `MAZE_TYPE` with a fixed food dot.
 
-Pac-Man's current position, the upper right corner of the map, is the initial state. His goal state is a cell containing food, which in this case is the cell in the lower left corner.
+<p align="center">
+ <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_tinymaze.png" width="200" title="tinyMaze"/>
+</p>
+
+Pac-Man's initial state is in the upper right corner of the maze. His goal state is a cell containing food, which in this case is the cell in the lower left corner.
 
 #### Depth-First Search (DFS)
 We do `python pacman.py -l tinyMaze -p SearchAgent -a fn=dfs` and get:
 
-<img align="left" src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_dfs.gif" width="200" />
+<img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_dfs.gif" width="200" title="DFS on tinyMaze"/>
 **Cost:** Pac-Man finds the food in 10 steps.
 
-<img align="right" src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_dfs_paths.png" width="200" />
+<img align="left" src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_dfs_paths.png" width="200" title="DFS paths on tinyMaze"/>
 **Strategy:** The frontier that DFS constructs is a LIFO (last-in, first-out) stack. The algorithm adds a successor to the frontier and immediately expands it; in other words, it builds a path by exploring a neighbouring cell, then exploring the cell next to that, then the cell next to that, and so on. For instance, it determines Pac-Man can go either west or south from the initial state, but chooses to explore the path heading west to the end before considering the path heading south.
 
 The path that DFS explores first - the path heading west - is indicated in white. At the end of this path, DFS has no new un-explored cells, and has found no food. Therefore DFS moves to the next un-explored state on the frontier: it "backtracks" to the last cross-roads and continues down the green path. DFS finds food and reaches a goal state, so it doesn't bother looking down a different path, and this is the path that Pac-Man takes.
@@ -45,7 +47,7 @@ The path that DFS explores first - the path heading west - is indicated in white
 #### Breadth-First Search (BFS)
 We do `python pacman.py -l tinyMaze -p SearchAgent -a fn=bfs` and get:
 
-<img align="left" src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_bfs.gif" width="200" />
+<img align="left" src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_bfs.gif" width="200" title="BFS on tinyMaze"/>
 
 **Cost:** Pac-Man finds a more efficient path in 8 steps.
 
