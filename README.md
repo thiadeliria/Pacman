@@ -37,9 +37,11 @@ Pac-Man's initial state is in the upper right corner of the maze. His goal state
 We do `python pacman.py -l tinyMaze -p SearchAgent -a fn=dfs` and get:
 
 <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_dfs.gif" width="200" title="DFS on tinyMaze"/>
+
 **Cost:** Pac-Man finds the food in 10 steps.
 
 <img align="left" src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_dfs_paths.png" width="200" title="DFS paths on tinyMaze"/>
+
 **Strategy:** The frontier that DFS constructs is a LIFO (last-in, first-out) stack. The algorithm adds a successor to the frontier and immediately expands it; in other words, it builds a path by exploring a neighbouring cell, then exploring the cell next to that, then the cell next to that, and so on. For instance, it determines Pac-Man can go either west or south from the initial state, but chooses to explore the path heading west to the end before considering the path heading south.
 
 The path that DFS explores first - the path heading west - is indicated in white. At the end of this path, DFS has no new un-explored cells, and has found no food. Therefore DFS moves to the next un-explored state on the frontier: it "backtracks" to the last cross-roads and continues down the green path. DFS finds food and reaches a goal state, so it doesn't bother looking down a different path, and this is the path that Pac-Man takes.
