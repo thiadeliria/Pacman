@@ -8,8 +8,9 @@ Use WASD or arrow keys to control Pac-Man. To start an interactive game, type at
 
 `python pacman.py`
 
+<p align="center">
 <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_default.gif" width="540" />
-
+</p>
 
 To see how Pac-Man fares using search algorithms, we can define some variables:
 
