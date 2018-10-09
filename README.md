@@ -38,10 +38,7 @@ We do `python pacman.py -l tinyMaze -p SearchAgent -a fn=dfs` and get:
 
 **Cost:** Pac-Man finds the food in 10 steps.
 
-**Strategy:** The frontier that DFS constructs is a LIFO (last-in, first-out) stack. The algorithm adds a successor to the frontier and immediately expands it; in other words, it builds a path by exploring a neighbouring cell, then exploring the cell next to that, then the cell next to that, and so on. 
-
-<img align="right" src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_dfs_initial.png" width="200" />
-For instance, it determines Pac-Man can go either west or south from the initial state, but chooses to explore the path heading west to the end before considering the path heading south.
+**Strategy:** The frontier that DFS constructs is a LIFO (last-in, first-out) stack. The algorithm adds a successor to the frontier and immediately expands it; in other words, it builds a path by exploring a neighbouring cell, then exploring the cell next to that, then the cell next to that, and so on. For instance, it determines Pac-Man can go either west or south from the initial state, but chooses to explore the path heading west to the end before considering the path heading south.
 
 <img align="right" src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_dfs_path1.png" width="200" />
 The path that DFS explores first - the path heading west - is indicated in white. At the end of this path, DFS has no new un-explored cells, and has found no food. Therefore DFS moves to the next un-explored state on the frontier and "backtracks" to the last cross-roads (indicated by the yellow square).
