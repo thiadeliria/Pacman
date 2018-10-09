@@ -73,14 +73,13 @@ def tinyMazeSearch(problem):
 def depthFirstSearch(problem):
     """Search the deepest nodes in the search tree first."""
 
-    #to be explored (FIFO). holds nodes (state, action[])
+    #states to be explored (LIFO). holds nodes in form (state, action)
     frontier = util.Stack()
-    
-    #previously expanded states (for path checking), holds states
+    #previously explored states (for path checking), holds states
     exploredNodes = []
-    
+    #define start node
     startState = problem.getStartState()
-    startNode = (startState, []) #(state, action)
+    startNode = (startState, [])
     
     frontier.push(startNode)
     
@@ -89,15 +88,17 @@ def depthFirstSearch(problem):
         currentState, actions = frontier.pop()
         
         if currentState not in exploredNodes:
-            #put popped node into explored list
+            #mark current node as explored
             exploredNodes.append(currentState)
 
             if problem.isGoalState(currentState):
                 return actions
             else:
-                #list of (successor, action, stepCost)
+                #get list of possible successor nodes in 
+                #form (successor, action, stepCost)
                 successors = problem.getSuccessors(currentState)
                 
+                #push each successor to frontier
                 for succState, succAction, succCost in successors:
                     newAction = actions + [succAction]
                     newNode = (succState, newAction)
