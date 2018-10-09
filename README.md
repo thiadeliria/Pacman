@@ -35,8 +35,9 @@ Pac-Man's initial state is in the upper right corner of the maze. His goal state
 
 #### Depth-First Search (DFS)
 We do `python pacman.py -l tinyMaze -p SearchAgent -a fn=dfs` and get:
-
-<img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_dfs.gif" width="200" title="DFS on tinyMaze"/>
+<p align="center">
+ <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_dfs.gif" width="200" title="DFS on tinyMaze"/>
+</p>
 
 **Cost:** Pac-Man finds the food in 10 steps.
 
@@ -48,8 +49,9 @@ The path that DFS explores first is indicated in white. At the end of this path,
 
 #### Breadth-First Search (BFS)
 We do `python pacman.py -l tinyMaze -p SearchAgent -a fn=bfs` and get:
-
-<img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_bfs.gif" width="200" title="BFS on tinyMaze"/>
+<p align="center">
+ <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_bfs.gif" width="200" title="BFS on tinyMaze"/>
+</p>
 
 **Cost:** Pac-Man finds a more efficient path in 8 steps.
 
