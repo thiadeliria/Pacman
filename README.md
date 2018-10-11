@@ -1,9 +1,22 @@
-# Overview
-**Summary:** a Python implementation of AI search algorithms to solve problems within the Berkeley Pac-Man environment. The [Pac-Man Projects, developed at UC Berkeley](http://ai.berkeley.edu), apply AI concepts to the classic arcade game Pac-Man. The code uses Python 2.7.13 plus NumPy 1.13.1 and SciPy 0.19.1.
+# Pac-Man
+A Python implementation of artificial intelligence search algorithms to solve problems within the Berkeley Pac-Man environment. The [Pac-Man Projects, developed at UC Berkeley](http://ai.berkeley.edu), apply AI concepts to the classic arcade game. I help Pac-Man find food, avoid ghosts, and maximise his game score using uninformed and informed state-space search, probabilistic inference, and reinforcement learning.
 
-**Concepts:** uninformed and informed state-space search, probabilistic inference, reinforcement learning.
+This project uses Python 2.7.13 plus NumPy 1.13.1 and SciPy 0.19.1.
 
-# How to Play
+## Table of Contents
+* [How to Play](https://github.com/thiadeliria/Pacman#how-to-play)
+* [Uninformed Search](https://github.com/thiadeliria/Pacman#uninformed-search)
+    * [Small Search Space](https://github.com/thiadeliria/Pacman#depth-first-search-vs-breadth-first-search-small-search-space)
+        * [Depth-First Search](https://github.com/thiadeliria/Pacman#depth-first-search-dfs)
+        * [Breadth-First Search](https://github.com/thiadeliria/Pacman#breadth-first-search-bfs)
+        * [Comparison]()
+    * [Large Search Space](https://github.com/thiadeliria/Pacman#depth-first-search-vs-breadth-first-search-large-search-space)
+        * [Depth-First Search](https://github.com/thiadeliria/Pacman#depth-first-search-dfs-1)
+        * [Breadth-First Search](https://github.com/thiadeliria/Pacman#breadth-first-search-bfs-1)
+        * [Comparison]()
+
+
+## How to Play
 Use WASD or arrow keys to control Pac-Man. To start an interactive game, type at the command line:
 
 `python pacman.py`
@@ -17,7 +30,7 @@ To see how Pac-Man fares using search algorithms, we can define some variables:
 `python pacman.py -l MAZE_TYPE -p SearchAgent -a fn=SEARCH_ALGO` where `MAZE_TYPE` defines the map layout, and `SearchAgent` navigates Pac-Man through the maze according to the algorithm supplied in the `SEARCH_ALGO` parameter.
 
 
-# Uninformed Search
+## Uninformed Search
 Given the inputs:
 * initial state - the maze cell that Pac-Man starts in,
 * successor function - possible actions that he can take (*e.g.*, *move East*), and
@@ -25,7 +38,7 @@ Given the inputs:
 
 the search algorithm returns a sequence of states that leads Pac-Man from initial to goal state. The strategy is to iteratively generate a list of successor states (called the *frontier*) until a path to the goal state is found.
 
-## Depth-First Search vs. Breadth-First Search (small search space)
+### Depth-First Search vs. Breadth-First Search (small search space)
 We can compare some algorithms by observing how Pac-Man fares on a tinyMaze `MAZE_TYPE` with a fixed food dot.
 
 <p align="center">
@@ -34,7 +47,7 @@ We can compare some algorithms by observing how Pac-Man fares on a tinyMaze `MAZ
 
 Pac-Man's initial state is in the upper right corner of the maze. His goal state is a cell containing food, which in this case is the cell in the lower left corner.
 
-### Depth-First Search (DFS)
+#### Depth-First Search (DFS)
 We do `python pacman.py -l tinyMaze -p SearchAgent -a fn=dfs` and get:
 <p align="center">
  <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tiny_dfs.gif" width="200" title="DFS on tinyMaze"/>
@@ -50,7 +63,7 @@ We do `python pacman.py -l tinyMaze -p SearchAgent -a fn=dfs` and get:
 
 The path that DFS explores first is indicated in white. At the end of this path, DFS has no new un-explored cells, and has found no food. Therefore DFS moves to the next un-explored state on the frontier: it "backtracks" to the last cross-roads and continues down the green path. DFS finds food and reaches a goal state, so it doesn't bother looking down a different path, and this is the path that Pac-Man takes.
 
-### Breadth-First Search (BFS)
+#### Breadth-First Search (BFS)
 We do `python pacman.py -l tinyMaze -p SearchAgent -a fn=bfs` and get:
 <p align="center">
  <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tiny_bfs.gif" width="200" title="BFS on tinyMaze"/>
@@ -66,11 +79,10 @@ We do `python pacman.py -l tinyMaze -p SearchAgent -a fn=bfs` and get:
 
 By the 8th iteration, BFS finds that the path heading south yields food, so that is the path that Pac-Man takes.
 
-### Comparison
+#### Comparison
 On a tinyMaze, BFS has an advantage. The order in which it builds the frontier ensures that all shorter paths are expanded prior to any longer path. BFS guarantees the shortest solution (= optimality).
-___
 
-## Depth-First Search vs. Breadth-First Search (large search space)
+### Depth-First Search vs. Breadth-First Search (large search space)
 Let's compare the two algorithms on a `MAZE_TYPE` with a greater search space. The mediumMaze has in total 269 cells or search nodes, compared to tinyMaze's 15.
 
 <p align="center">
@@ -79,7 +91,7 @@ Let's compare the two algorithms on a `MAZE_TYPE` with a greater search space. T
 
 Pac-Man's initial state is the cell in the upper right corner. His goal state is a cell containing food, which is the cell in the lower left corner.
 
-### Depth-First Search (DFS)
+#### Depth-First Search (DFS)
 We try `python pacman.py -l mediumMaze -p SearchAgent -a fn=dfs`.
 <p align="center">
  <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/medium_dfs.gif" title="DFS on mediumMaze"/>
@@ -90,7 +102,7 @@ We try `python pacman.py -l mediumMaze -p SearchAgent -a fn=dfs`.
 
 **Search nodes expanded:** 146.
 
-### Breadth-First Search (BFS)
+#### Breadth-First Search (BFS)
 We do `python pacman.py -l mediumMaze -p SearchAgent -a fn=bfs` and get:
 <p align="center">
  <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/medium_bfs.gif" title="BFS on mediumMaze"/>
