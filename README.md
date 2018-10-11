@@ -6,16 +6,16 @@ This project uses Python 2.7.13 plus NumPy 1.13.1 and SciPy 0.19.1.
 ## Table of Contents
 * [How to Play](https://github.com/thiadeliria/Pacman#how-to-play)
 * [Uninformed Search](https://github.com/thiadeliria/Pacman#uninformed-search)
-    * [Problem: Finding Some Food in a Small Search Space](https://github.com/thiadeliria/Pacman#small-search-space)
+    * [Problem: Finding Some Food in a Small Search Space](https://github.com/thiadeliria/Pacman/blob/master/README.md#problem-finding-some-food-in-a-small-search-space)
         * [Depth-First Search](https://github.com/thiadeliria/Pacman#depth-first-search-dfs)
         * [Breadth-First Search](https://github.com/thiadeliria/Pacman#breadth-first-search-bfs)
         * [Comparison](https://github.com/thiadeliria/Pacman#comparison)
-    * [Problem: Finding Some Food in a Large Search Space](https://github.com/thiadeliria/Pacman#large-search-space)
+    * [Problem: Finding Some Food in a Large Search Space](https://github.com/thiadeliria/Pacman/blob/master/README.md#problem-finding-some-food-in-a-large-search-space)
         * [Depth-First Search](https://github.com/thiadeliria/Pacman#depth-first-search-dfs-1)
         * [Breadth-First Search](https://github.com/thiadeliria/Pacman#breadth-first-search-bfs-1)
         * [Comparison](https://github.com/thiadeliria/Pacman#comparison-1)
 * [Informed Search](https://github.com/thiadeliria/Pacman#informed-search)
-    * [Problem: Finding All the Food](https://github.com/thiadeliria/Pacman#large-search-space)
+    * [Problem: Finding All the Food](https://github.com/thiadeliria/Pacman/blob/master/README.md#problem-finding-all-the-food)
         
 
 ## How to Play
@@ -124,4 +124,43 @@ Previously, we used algorithms that found a solution given the initial state, th
 
 
 ### Problem: Finding All the Food
-Let's compare the two algorithms on a `MAZE_TYPE` with a greater search space. The mediumMaze has in total 269 cells or search nodes, compared to tinyMaze's 15.
+Now Pac-Man has a more complicated task. We use a trickySearch maze, in which there are a number of food dots for him to locate. He begins in the centre of the map and must eat all of the food.
+<p align="center">
+ <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/trickySearch.png" title="trickySearch maze"/>
+</p>
+
+#### Depth-First Search (DFS)
+Run
+`python pacman.py -l trickySearch -p SearchAgent -a fn=dfs,prob=FoodSearchProblem`
+and we get
+<p align="center">
+ <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_dfs.gif" title="DFS on trickySearch"/>
+</p>
+
+Pac-Man dawdles uncertainly and retraces his steps again and again in the maze. Let's try a different algorithm.
+
+<img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_dfs_text.png" title="DFS on trickySearch, text"/>
+
+
+#### Breadth-First Search (BFS)
+Run
+`python pacman.py -l trickySearch -p SearchAgent -a fn=bfs,prob=FoodSearchProblem` and Pac-Man manages to find a short and stright-forward solution.
+<p align="center">
+ <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_bfs.gif" title="BFS on trickySearch"/>
+</p>
+
+However, it takes almost a whole minute for BFS to find this solution - BFS expands over 16,000 nodes! (For reference, there are 72 nodes in this maze.)
+<img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_bfs_text.png" title="BFS on trickySearch, text"/>
+
+If we want to find a cost-efficient path quickly, we need to define a heuristic.
+
+#### A* Search
+We define a heuristic (foodHeuristic) that takes into account the positions of the food currently in the maze. By calculating the distance from Pac-Man's current position to the food dots, we can encourage Pac-Man to eat all the food as fast as possible. Implementing the foodHeuristic:
+`python2 pacman.py -l trickySearch -p SearchAgent -a fn=astar,prob=FoodSearchProblem,heuristic=foodHeuristic`
+<p align="center">
+ <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_astar.gif" title="A* on trickySearch"/>
+</p>
+
+Pac-Man now quickly and confidently gobbles up all the food in the maze. A* expands only 2,748 nodes compared to BFS' 16,688, and still manages to find a decently short solution.
+
+<img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_astar_text.png" title="A* on trickySearch, text"/>
