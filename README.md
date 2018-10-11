@@ -15,7 +15,10 @@ This project uses Python 2.7.13 plus NumPy 1.13.1 and SciPy 0.19.1.
         * [Breadth-First Search](https://github.com/thiadeliria/Pacman#breadth-first-search-bfs-1)
         * [Comparison](https://github.com/thiadeliria/Pacman#comparison-1)
 * [Informed Search](https://github.com/thiadeliria/Pacman#informed-search)
-    * [Problem: Finding All the Food](https://github.com/thiadeliria/Pacman/blob/master/README.md#problem-finding-all-the-food)
+    * [Problem: Finding All the Food](https://github.com/thiadeliria/Pacman#problem-finding-all-the-food)
+        * [Depth-First Search](https://github.com/thiadeliria/Pacman#depth-first-search-dfs-2)
+        * [Breadth-First Search](https://github.com/thiadeliria/Pacman#breadth-first-search-bfs-2)
+        * [A* Search](https://github.com/thiadeliria/Pacman#a-search)
         
 
 ## How to Play
@@ -137,10 +140,9 @@ and we get
  <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_dfs.gif" title="DFS on trickySearch"/>
 </p>
 
-Pac-Man dawdles uncertainly and retraces his steps again and again in the maze. Let's try a different algorithm.
-
 <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_dfs_text.png" title="DFS on trickySearch, text"/>
 
+Pac-Man dawdles uncertainly and retraces his steps again and again in the maze. Let's try a different algorithm.
 
 #### Breadth-First Search (BFS)
 Run
@@ -149,8 +151,9 @@ Run
  <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_bfs.gif" title="BFS on trickySearch"/>
 </p>
 
-However, it takes almost a whole minute for BFS to find this solution - BFS expands over 16,000 nodes! (For reference, there are 72 nodes in this maze.)
 <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_bfs_text.png" title="BFS on trickySearch, text"/>
+
+However, it takes almost a whole minute for BFS to find this solution - BFS expands over 16,000 nodes! (For reference, there are 72 nodes in this maze.)
 
 If we want to find a cost-efficient path quickly, we need to define a heuristic.
 
@@ -161,6 +164,7 @@ We define a heuristic (foodHeuristic) that takes into account the positions of t
  <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_astar.gif" title="A* on trickySearch"/>
 </p>
 
+<img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_astar_text.png" title="A* on trickySearch, text"/>
+
 Pac-Man now quickly and confidently gobbles up all the food in the maze. A* expands only 2,748 nodes compared to BFS' 16,688, and still manages to find a decently short solution.
 
-<img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_astar_text.png" title="A* on trickySearch, text"/>
