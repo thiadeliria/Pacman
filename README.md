@@ -9,7 +9,7 @@ Use WASD or arrow keys to control Pac-Man. To start an interactive game, type at
 `python pacman.py`
 
 <p align="center">
-<img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_default.gif" width="540" />
+<img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/interactive.gif" width="540" />
 </p>
 
 To see how Pac-Man fares using search algorithms, we can define some variables:
@@ -29,7 +29,7 @@ the search algorithm returns a sequence of states that leads Pac-Man from initia
 We can compare some algorithms by observing how Pac-Man fares on a tinyMaze `MAZE_TYPE` with a fixed food dot.
 
 <p align="center">
- <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_tinymaze.png" width="200" title="tinyMaze"/>
+ <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tinymaze.png" width="200" title="tinyMaze"/>
 </p>
 
 Pac-Man's initial state is in the upper right corner of the maze. His goal state is a cell containing food, which in this case is the cell in the lower left corner.
@@ -37,12 +37,12 @@ Pac-Man's initial state is in the upper right corner of the maze. His goal state
 #### Depth-First Search (DFS)
 We do `python pacman.py -l tinyMaze -p SearchAgent -a fn=dfs` and get:
 <p align="center">
- <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_dfs.gif" width="200" title="DFS on tinyMaze"/>
+ <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tiny_dfs.gif" width="200" title="DFS on tinyMaze"/>
 </p>
 
 **Cost:** Pac-Man finds the food in 10 steps.
 
-<img align="left" src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_dfs_paths.png" width="200" title="DFS paths on tinyMaze"/>
+<img align="left" src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tiny_dfs_paths.png" width="200" title="DFS paths on tinyMaze"/>
 
 **Strategy:** The frontier that DFS constructs is a LIFO (last-in, first-out) stack. The algorithm adds a successor to the frontier and immediately expands it; in other words, it builds a path by exploring a neighbouring cell, then exploring the cell next to that, then the cell next to that, and so on. For instance, it determines Pac-Man can go either west or south from the initial state, but chooses to explore the path heading west to the end before considering the path heading south.
 
@@ -51,23 +51,23 @@ The path that DFS explores first is indicated in white. At the end of this path,
 #### Breadth-First Search (BFS)
 We do `python pacman.py -l tinyMaze -p SearchAgent -a fn=bfs` and get:
 <p align="center">
- <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_bfs.gif" width="200" title="BFS on tinyMaze"/>
+ <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tiny_bfs.gif" width="200" title="BFS on tinyMaze"/>
 </p>
 
 **Cost:** Pac-Man finds a more efficient path in 8 steps.
 
-<img align="left" src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_bfs_paths.gif" width="200" title="BFS paths on tinyMaze"/>
+<img align="left" src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tiny_bfs_paths.gif" width="200" title="BFS paths on tinyMaze"/>
 
-**Strategy:** BFS builds the frontier in a different strategy. It is a FIFO (first-in, first-out) queue and expands successors in the order they were added. Consider the animation on the left. At the initial state, BFS explores the path heading west and the path heading south concurrently. BFS explores all the neighbouring cells on each path that are 1 step away. Since none are the goal cell, BFS tries the cells 2 steps away, and again it finds no goal cell, so BFS tries looking 3 steps away, and so on. By the 8th iteration, the path heading south yields food, so that is the path that Pac-Man takes.
+**Strategy:** BFS builds the frontier in a different strategy. It is a FIFO (first-in, first-out) queue and expands successors in the order they were added. Consider the animation on the left. At the initial state, BFS explores the path heading west and the path heading south concurrently. BFS explores all the neighbouring cells on each path that are 1 step away. Since none are the goal cell, BFS tries the cells 2 steps away, and again it finds no goal cell, so BFS tries looking 3 steps away, and so on. By the 8th iteration, BFS finds that the path heading south yields food, so that is the path that Pac-Man takes.
 
 On a tinyMaze, BFS has an advantage. The order in which it builds the frontier ensures that all shorter paths are expanded prior to any longer path. BFS guarantees the shortest solution (= optimality).
-
+___
 
 ### Depth-First Search vs. Breadth-First Search (large search space)
-Let's compare the two algorithms on mediumMaze, a `MAZE_TYPE` with a greater search space.
+Let's compare the two algorithms on a `MAZE_TYPE` with a greater search space.
 
 <p align="center">
- <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_mediummaze.png" title="mediumMaze"/>
+ <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/mediummaze.png" title="mediumMaze"/>
 </p>
 
 Pac-Man's initial state is the cell in the upper right corner. His goal state is a cell containing food, which is the cell in the lower left corner.
