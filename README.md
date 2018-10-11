@@ -71,3 +71,15 @@ Let's compare the two algorithms on a `MAZE_TYPE` with a greater search space.
 </p>
 
 Pac-Man's initial state is the cell in the upper right corner. His goal state is a cell containing food, which is the cell in the lower left corner.
+
+#### Depth-First Search (DFS)
+We do `python pacman.py -l mediumMaze -p SearchAgent -a fn=dfs` and get:
+<p align="center">
+ <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/medium_dfs.gif" title="DFS on mediumMaze"/>
+</p>
+
+**Cost:** Pac-Man finds the food in 130 steps.
+
+<img align="left" src="https://github.com/thiadeliria/Pacman/blob/master/gifs/medium_dfs_text.png" title="DFS on tinyMaze, text"/>
+
+ 
