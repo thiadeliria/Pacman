@@ -6,14 +6,14 @@ This project uses Python 2.7.13 plus NumPy 1.13.1 and SciPy 0.19.1.
 ## Table of Contents
 * [How to Play](https://github.com/thiadeliria/Pacman#how-to-play)
 * [Uninformed Search](https://github.com/thiadeliria/Pacman#uninformed-search)
-    * [Small Search Space](https://github.com/thiadeliria/Pacman#depth-first-search-vs-breadth-first-search-small-search-space)
+    * [Small Search Space](https://github.com/thiadeliria/Pacman#small-search-space)
         * [Depth-First Search](https://github.com/thiadeliria/Pacman#depth-first-search-dfs)
         * [Breadth-First Search](https://github.com/thiadeliria/Pacman#breadth-first-search-bfs)
-        * [Comparison]()
-    * [Large Search Space](https://github.com/thiadeliria/Pacman#depth-first-search-vs-breadth-first-search-large-search-space)
+        * [Comparison](https://github.com/thiadeliria/Pacman#comparison)
+    * [Large Search Space](https://github.com/thiadeliria/Pacman#large-search-space)
         * [Depth-First Search](https://github.com/thiadeliria/Pacman#depth-first-search-dfs-1)
         * [Breadth-First Search](https://github.com/thiadeliria/Pacman#breadth-first-search-bfs-1)
-        * [Comparison]()
+        * [Comparison](https://github.com/thiadeliria/Pacman#comparison-1)
 
 
 ## How to Play
@@ -38,7 +38,7 @@ Given the inputs:
 
 the search algorithm returns a sequence of states that leads Pac-Man from initial to goal state. The strategy is to iteratively generate a list of successor states (called the *frontier*) until a path to the goal state is found.
 
-### Depth-First Search vs. Breadth-First Search (small search space)
+### Small Search Space
 We can compare some algorithms by observing how Pac-Man fares on a tinyMaze `MAZE_TYPE` with a fixed food dot.
 
 <p align="center">
@@ -61,7 +61,7 @@ We do `python pacman.py -l tinyMaze -p SearchAgent -a fn=dfs` and get:
 
 **Strategy:** The frontier that DFS constructs is a LIFO (last-in, first-out) stack. The algorithm adds a successor to the frontier and immediately expands it; in other words, it builds a path by exploring a neighbouring cell, then exploring the cell next to that, then the cell next to that, and so on. For instance, it determines Pac-Man can go either west or south from the initial state, but chooses to explore the path heading west to the end before considering the path heading south.
 
-The path that DFS explores first is indicated in white. At the end of this path, DFS has no new un-explored cells, and has found no food. Therefore DFS moves to the next un-explored state on the frontier: it "backtracks" to the last cross-roads and continues down the green path. DFS finds food and reaches a goal state, so it doesn't bother looking down a different path, and this is the path that Pac-Man takes.
+The path that DFS explores first is indicated in white. At the end of this path, DFS has no new un-explored cells, and has found no food. Therefore DFS moves to the next un-explored state on the frontier: it "backtracks" to the last cross-roads and continues down the green path. DFS finds food and reaches a goal state.
 
 #### Breadth-First Search (BFS)
 We do `python pacman.py -l tinyMaze -p SearchAgent -a fn=bfs` and get:
@@ -75,14 +75,14 @@ We do `python pacman.py -l tinyMaze -p SearchAgent -a fn=bfs` and get:
 
 <img align="left" src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tiny_bfs_paths.gif" width="200" title="BFS paths on tinyMaze"/>
 
-**Strategy:** BFS builds the frontier in a different strategy. It is a FIFO (first-in, first-out) queue and expands successors in the order they were added. Consider the animation on the left. At the initial state, BFS explores the path heading west and the path heading south concurrently. BFS explores all the neighbouring cells on each path that are 1 step away. Since none are the goal cell, BFS tries the cells 2 steps away, and again it finds no goal cell, so BFS tries looking 3 steps away, and so on. 
+**Strategy:** BFS is a FIFO (first-in, first-out) queue and expands successors in the order they were added. 
 
-By the 8th iteration, BFS finds that the path heading south yields food, so that is the path that Pac-Man takes.
+Consider the animation on the left. At the initial state, BFS explores the path heading west and the path heading south concurrently. BFS explores all the neighbouring cells on each path that are 1 step away. Since none are the goal cell, BFS tries the cells 2 steps away, and again it finds no goal cell, so BFS tries looking 3 steps away, and so on. By the 8th iteration, BFS finds that the path heading south yields food, so that is the path that Pac-Man takes.
 
 #### Comparison
 On a tinyMaze, BFS has an advantage. The order in which it builds the frontier ensures that all shorter paths are expanded prior to any longer path. BFS guarantees the shortest solution (= optimality).
 
-### Depth-First Search vs. Breadth-First Search (large search space)
+### Large Search Space
 Let's compare the two algorithms on a `MAZE_TYPE` with a greater search space. The mediumMaze has in total 269 cells or search nodes, compared to tinyMaze's 15.
 
 <p align="center">
