@@ -63,3 +63,11 @@ We do `python pacman.py -l tinyMaze -p SearchAgent -a fn=bfs` and get:
 On a tinyMaze, BFS has an advantage. The order in which it builds the frontier ensures that all shorter paths are expanded prior to any longer path. BFS guarantees the shortest solution (= optimality).
 
 
+### Depth-First Search vs. Breadth-First Search (large search space)
+Let's compare the two algorithms on mediumMaze, a `MAZE_TYPE` with a greater search space.
+
+<p align="center">
+ <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/pacman_mediummaze.png" title="mediumMaze"/>
+</p>
+
+Pac-Man's initial state is the cell in the upper right corner. His goal state is a cell containing food, which is the cell in the lower left corner.
