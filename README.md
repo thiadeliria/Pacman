@@ -7,11 +7,11 @@ This project uses Python 2.7.13 plus NumPy 1.13.1 and SciPy 0.19.1.
 ## Table of Contents
 * [How to Play](https://github.com/thiadeliria/Pacman#how-to-play)
 * [Uninformed Search](https://github.com/thiadeliria/Pacman#uninformed-search)
-    * [Problem: Finding Some Food in a Small Search Space](https://github.com/thiadeliria/Pacman/blob/master/README.md#problem-finding-some-food-in-a-small-search-space)
+    * [Problem: Finding Some Food in a Small Search Space](https://github.com/thiadeliria/Pacman#problem-finding-some-food-in-a-small-search-space)
         * [Depth-First Search](https://github.com/thiadeliria/Pacman#depth-first-search-dfs)
         * [Breadth-First Search](https://github.com/thiadeliria/Pacman#breadth-first-search-bfs)
         * [Comparison](https://github.com/thiadeliria/Pacman#comparison)
-    * [Problem: Finding Some Food in a Large Search Space](https://github.com/thiadeliria/Pacman/blob/master/README.md#problem-finding-some-food-in-a-large-search-space)
+    * [Problem: Finding Some Food in a Large Search Space](https://github.com/thiadeliria/Pacman#problem-finding-some-food-in-a-large-search-space)
         * [Depth-First Search](https://github.com/thiadeliria/Pacman#depth-first-search-dfs-1)
         * [Breadth-First Search](https://github.com/thiadeliria/Pacman#breadth-first-search-bfs-1)
         * [Comparison](https://github.com/thiadeliria/Pacman#comparison-1)
