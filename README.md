@@ -3,6 +3,7 @@ A Python implementation of artificial intelligence search algorithms to solve pr
 
 This project uses Python 2.7.13 plus NumPy 1.13.1 and SciPy 0.19.1.
 
+
 ## Table of Contents
 * [How to Play](https://github.com/thiadeliria/Pacman#how-to-play)
 * [Uninformed Search](https://github.com/thiadeliria/Pacman#uninformed-search)
@@ -35,6 +36,7 @@ To see how Pac-Man fares using search algorithms, we can define some variables:
 `python pacman.py -l MAZE_TYPE -p SearchAgent -a fn=SEARCH_ALGO` where `MAZE_TYPE` defines the map layout, and `SearchAgent` navigates Pac-Man through the maze according to the algorithm supplied in the `SEARCH_ALGO` parameter.
 
 
+
 ## Uninformed Search
 Given the inputs:
 * initial state - the maze cell that Pac-Man starts in,
@@ -42,6 +44,7 @@ Given the inputs:
 * goal state - the cell that he wants to be in,
 
 the search algorithm returns a sequence of states that leads Pac-Man from initial to goal state. The strategy is to iteratively generate a list of successor states (called the *frontier*) until a path to the goal state is found.
+
 
 ### Problem: Finding Some Food in a Small Search Space
 We can compare some algorithms by observing how Pac-Man fares on a tinyMaze `MAZE_TYPE` with a fixed food dot.
@@ -87,6 +90,7 @@ Consider the animation on the left. At the initial state, BFS explores the path 
 #### Comparison
 On a tinyMaze, BFS has an advantage. The order in which it builds the frontier ensures that all shorter paths are expanded prior to any longer path. BFS guarantees the shortest solution (= optimality).
 
+
 ### Problem: Finding Some Food in a Large Search Space
 Let's compare the two algorithms on a `MAZE_TYPE` with a greater search space. The mediumMaze has in total 269 cells or search nodes, compared to tinyMaze's 15.
 
@@ -122,6 +126,7 @@ We do `python pacman.py -l mediumMaze -p SearchAgent -a fn=bfs` and get:
 Again, BFS beats DFS by a shorter path. The BFS solution is optimal - but notice the difference in 'Search nodes expanded' - 146 nodes versus 269. BFS finds the shortest-length solution, but sacrifices space as it expands every node in the search space. The more successors each state has (= the higher the branching factor), the more storage BFS uses. The advantage of DFS, low space complexity, is visible in cases with a high branching factor.
 
 
+
 ## Informed Search
 Previously, we used algorithms that found a solution given the initial state, the goal state, and a successor function. In order to "look-ahead" to the solution, we  can make use of a domain-specific heuristic that considers additional knowledge about the search problem.
 
@@ -153,7 +158,7 @@ Run
 
 <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_bfs_text.png" title="BFS on trickySearch, text"/>
 
-However, it takes almost a whole minute for BFS to find this solution - BFS expands over 16,000 nodes! (For reference, there are 72 nodes in this maze.)
+However, it takes almost a whole minute for BFS to find this solution - BFS expands over 16,000 nodes! (For reference, there are 67 nodes in this maze.)
 
 If we want to find a cost-efficient path quickly, we need to define a heuristic.
 
