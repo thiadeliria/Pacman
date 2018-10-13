@@ -186,7 +186,7 @@ If we want to find a cost-efficient path quickly, we need to define a heuristic.
 We define a heuristic (foodHeuristic) that takes into account the positions of the food currently in the maze. By calculating the distance from Pac-Man's current position to the food dots, we can encourage Pac-Man to eat all the food as fast as possible. Implementing the foodHeuristic:
 
 ~~~~
-python2 pacman.py -l trickySearch -p SearchAgent -a fn=astar,prob=FoodSearchProblem,heuristic=foodHeuristic
+python pacman.py -l trickySearch -p SearchAgent -a fn=astar,prob=FoodSearchProblem,heuristic=foodHeuristic
 ~~~~
 
 <p align="center">
@@ -195,5 +195,5 @@ python2 pacman.py -l trickySearch -p SearchAgent -a fn=astar,prob=FoodSearchProb
 
 <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_astar_text.png" title="A* on trickySearch, text"/>
 
-Pac-Man now quickly and confidently gobbles up all the food in the maze. A* expands only 2,748 nodes compared to BFS' 16,000, and still manages to find a decently short solution.
+Pac-Man now quickly and confidently gobbles up all the food in the maze. A* expands only 2,748 nodes compared to BFS' 16,688, and still manages to find a decently short solution.
 
