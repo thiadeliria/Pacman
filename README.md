@@ -80,7 +80,6 @@ python pacman.py -l tinyMaze -p SearchAgent -a fn=dfs
 The path that DFS explores first is indicated in white. At the end of this path, DFS has no new un-explored cells, and has found no food. Therefore DFS moves to the next un-explored state on the frontier: it "backtracks" to the last cross-roads and continues down the green path. DFS finds food and reaches a goal state.
 
 #### Breadth-First Search (BFS)
-Run
 ~~~~
 python pacman.py -l tinyMaze -p SearchAgent -a fn=bfs
 ~~~~
@@ -165,7 +164,7 @@ python pacman.py -l trickySearch -p SearchAgent -a fn=dfs,prob=FoodSearchProblem
 
 <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_dfs_text.png" title="DFS on trickySearch, text"/>
 
-Pac-Man dawdles uncertainly and retraces his steps again and again in the maze. Let's try a different algorithm.
+Pac-Man dawdles uncertainly and retraces his steps in the maze. Let's try a different algorithm.
 
 #### Breadth-First Search (BFS)
 ~~~~
@@ -178,7 +177,7 @@ python pacman.py -l trickySearch -p SearchAgent -a fn=bfs,prob=FoodSearchProblem
 
 <img src="https://github.com/thiadeliria/Pacman/blob/master/gifs/tricky_bfs_text.png" title="BFS on trickySearch, text"/>
 
-Pac-Man manages to find a short and stright-forward solution. However, it takes almost a whole minute for BFS to find this solution - BFS expands over 16,000 nodes. (For reference, there are 67 nodes in this maze.)
+Pac-Man manages to find a short and stright-forward solution. However, it takes almost a whole minute for BFS to find this solution - BFS expands over 16,000 nodes during the search process. (For reference, there are 67 nodes in this maze.)
 
 If we want to find a cost-efficient path quickly, we need to define a heuristic.
 
@@ -197,3 +196,6 @@ python pacman.py -l trickySearch -p SearchAgent -a fn=astar,prob=FoodSearchProbl
 
 Pac-Man now quickly and confidently gobbles up all the food in the maze. A* expands only 2,748 nodes compared to BFS' 16,688, and still manages to find a decently short solution.
 
+
+#### Comparison
+Among the three algorithms, only BFS finds the optimal solution. However, BFS is space-expensive as it expands an enormous number of nodes. DFS is space-efficient but yields a long and unattractive solution. A* Search with heuristic generates a solution that is very close to the optimal length, but does this without using up excessive space.
